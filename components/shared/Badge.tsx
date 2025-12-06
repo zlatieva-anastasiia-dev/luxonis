@@ -46,7 +46,6 @@ export default function Badge({ item, className, ...props }: BadgeProps) {
                 ${className}
             `}
 			{...props}
-			{...props}
 		>
 			{getBadgeLabel(item)}
 		</span>
