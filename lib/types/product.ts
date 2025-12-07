@@ -4,7 +4,12 @@ export type Availability =
 	| { status: "ships-on"; date: string }
 	| { status: "in-stock" };
 
-export type CameraVariant = "Auto Focus" | "Fixed Focus" | "Wide";
+type CameraVariant = "Auto Focus" | "Fixed Focus" | "Wide";
+
+export type ProductImage = {
+	src: string;
+	altText: string;
+};
 
 export type Product = {
 	id: string;
@@ -12,10 +17,9 @@ export type Product = {
 	price: number;
 	priceWithVat: number;
 	availability: Availability[];
-	imageSrc: string;
-	altText: string;
+	mainImage: ProductImage;
+	productImages?: ProductImage[];
 	cameraVariants: CameraVariant[];
 	shortDescription: string;
-	readMore: string;
-	heroFeatures?: string[];
+	heroFeatures: string[];
 };
