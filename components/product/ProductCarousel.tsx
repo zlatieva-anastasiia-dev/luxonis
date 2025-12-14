@@ -48,7 +48,7 @@ export function ProductCarousel({ images }: ProductCarouselProps) {
 				<CarouselContent>
 					{images.map((img, index) => (
 						<CarouselItem key={index} className="px-2 w-full">
-							<div className="relative aspect-4/3 w-full rounded-xl border border-gray-100 bg-white flex items-center justify-center p-8">
+							<div className="relative aspect-4/3 w-full rounded-xl  bg-white flex items-center justify-center p-8">
 								<div className="relative w-full h-full">
 									<Image
 										src={img.src}

@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+
+import { BulletList } from "@/components/BulletList";
+import { ProductCameraVariants } from "@/components/product/ProductCameraVariants";
 import { ProductCarousel } from "@/components/product/ProductCarousel";
 import { ProductTabs } from "@/components/product/ProductTabs";
 import { StatusBadge } from "@/components/StatusBadge";
 import { getProduct } from "@/lib/api/products";
-import { ProductCameraVariants } from "@/components/product/ProductCameraVariants";
 
 export default async function ProductPage({
 	params,
@@ -91,18 +93,9 @@ export default async function ProductPage({
 							</p>
 						</div>
 
-						{product.heroFeatures && (
-							<ul className="space-y-3 text-sm text-gray-700">
-								{product.heroFeatures.map((feature) => (
-									<li key={feature} className="flex items-start gap-3">
-										<span className="text-indigo-500 font-bold">–</span>
-										<span>{feature}</span>
-									</li>
-								))}
-							</ul>
-						)}
+						<BulletList items={product.heroFeatures} />
 						<a
-							className="text-sm text-gray-70 p-1 border-b border-dashed border-indigo-500 hover:text-indigo-700"
+							className="text-sm text-gray-700 p-1 border-b border-dashed border-indigo-500 hover:text-indigo-700"
 							href="#product-details"
 						>
 							Read more

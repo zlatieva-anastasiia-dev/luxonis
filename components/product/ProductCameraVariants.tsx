@@ -1,7 +1,7 @@
 "use client";
 
-import type { CameraVariant } from "@/lib/types/product";
 import { useState } from "react";
+import type { CameraVariant } from "@/lib/types/product";
 
 export function ProductCameraVariants({
 	productCameraVariants,
