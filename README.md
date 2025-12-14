@@ -32,30 +32,28 @@ A comprehensive, responsive product page.
 
 ## Running Project
 
-1. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Run the development server:
+Run the development server:
 
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-4. Lint + Prettier
+Lint + Prettier
 
 - Run Biome linting
 
 ```bash
-- `npm run lint`
+npm run lint
 ```
 
 - Format code with Biome
 
 ```bash
-- `npm run format`
+npm run format
 ```
