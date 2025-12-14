@@ -1,8 +1,10 @@
 import type { Availability } from "@/lib/types/product";
+import { cn } from "@/lib/utils";
+import { Badge } from "./ui/badge";
 
-type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
+interface StatusBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 	item: Availability;
-};
+}
 
 const getBadgeStyle = (status: Availability["status"]) => {
 	switch (status) {
@@ -33,21 +35,22 @@ const getBadgeLabel = (item: Availability) => {
 	}
 };
 
-export default function Badge({ item, className, ...props }: BadgeProps) {
+export function StatusBadge({ item, className, ...props }: StatusBadgeProps) {
 	return (
-		<span
-			className={`
-                inline-block 
-                px-2.5 py-1 
-                text-xs
-                uppercase 
-                rounded 
-                ${getBadgeStyle(item.status)} 
-                ${className}
-            `}
+		<Badge
+			variant="outline"
+			className={cn(
+				"rounded-sm",
+				"px-2.5 py-1",
+				"text-[11px]",
+				"font-bold",
+				"uppercase",
+				getBadgeStyle(item.status),
+				className,
+			)}
 			{...props}
 		>
 			{getBadgeLabel(item)}
-		</span>
+		</Badge>
 	);
 }
