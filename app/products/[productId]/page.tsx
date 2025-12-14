@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Badge from "@/components/shared/Badge";
-import { Carousel } from "@/components/ui/Carousel/Carousel";
+import { ProductCarousel } from "@/components/product/ProductCarousel";
+import { ProductTabs } from "@/components/product/ProductTabs";
+import { StatusBadge } from "@/components/StatusBadge";
 import { getProduct } from "@/lib/api/products";
+import { ProductCameraVariants } from "@/components/product/ProductCameraVariants";
 
 export default async function ProductPage({
 	params,
@@ -46,7 +48,7 @@ export default async function ProductPage({
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 					<div>
 						{product.productImages && product.productImages.length > 0 ? (
-							<Carousel images={product.productImages} />
+							<ProductCarousel images={product.productImages} />
 						) : (
 							<div className="relative aspect-4/3 w-full overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex items-center justify-center p-8">
 								<div className="relative w-full h-full">
@@ -66,7 +68,6 @@ export default async function ProductPage({
 							<h1 className="text-4xl font-bold text-gray-900 tracking-tight">
 								{product.name}
 							</h1>
-
 							<div className="flex flex-col">
 								<span className="text-3xl font-bold text-gray-900">
 									${product.price}
@@ -79,11 +80,11 @@ export default async function ProductPage({
 
 						<div className="flex flex-wrap items-center gap-2">
 							{product.availability.map((item) => (
-								<Badge key={item.status} item={item} />
+								<StatusBadge key={item.status} item={item} />
 							))}
 						</div>
 
-						<div className="prose prose-gray max-w-none text-gray-600 leading-7">
+						<div className="text-gray-600 leading-7">
 							<p>
 								<strong className="text-gray-900">{product.name}</strong>{" "}
 								{product.shortDescription}
@@ -100,29 +101,20 @@ export default async function ProductPage({
 								))}
 							</ul>
 						)}
-
-						<div className="pt-8 border-t border-gray-100">
-							{product.cameraVariants.length > 0 && (
-								<>
-									<p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">
-										Select Model
-									</p>
-									<div className="flex flex-wrap gap-2">
-										{product.cameraVariants.map((variant) => (
-											<button
-												key={variant}
-												type="button"
-												className="px-5 py-3 bg-gray-100 text-gray-900 hover:bg-gray-200 text-xs font-bold uppercase tracking-wide rounded-sm transition-colors first:bg-gray-900 first:text-white"
-											>
-												{variant}
-											</button>
-										))}
-									</div>
-								</>
-							)}
-						</div>
+						<a
+							className="text-sm text-gray-70 p-1 border-b border-dashed border-indigo-500 hover:text-indigo-700"
+							href="#product-details"
+						>
+							Read more
+						</a>
+						<ProductCameraVariants
+							productCameraVariants={product.cameraVariants}
+						/>
 					</div>
 				</div>
+				<section id="product-details" className="w-full py-12 my-12">
+					<ProductTabs product={product} />
+				</section>
 			</div>
 		</div>
 	);
